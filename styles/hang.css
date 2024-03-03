@@ -1,0 +1,41 @@
+.stand {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.head {
+  position: absolute;
+  left: 235px;
+  top: 85px;
+}
+
+.body {
+  position: absolute;
+  left: 253px;
+  top: 123px;
+}
+
+.left-hand {
+  position: absolute;
+  left: 222px;
+  top: 140px;
+}
+
+.right-hand {
+  position: absolute;
+  left: 253px;
+  top: 140px;
+}
+
+.left-leg {
+  position: absolute;
+  left: 222px;
+  top: 216px;
+}
+
+.right-leg {
+  position: absolute;
+  left: 253px;
+  top: 216px;
+}
