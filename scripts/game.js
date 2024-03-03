@@ -1,12 +1,13 @@
-const keybordKeys = document.querySelector(".letter");
+const keybordKeys = document.querySelectorAll(".letter");
 let answer = document.getElementById("answer-section");
 
 let word = "";
-const words = ["elephant", "horse", "fish", "zebra", "monkey"];
+const words = ["ELEPHANT", "HORSE", "FISH", "ZEBRA", "MONKEY"];
+let letterArrays; //= words.map((word) => word.split(""));
 let guessedLetters = [];
 let letterToGuess;
 let triesLeft = 5;
-let a=answer.textContent = getWordDetails();
+let a = (answer.textContent = getWordDetails());
 window.onload = a;
 
 function getWordDetails() {
@@ -14,27 +15,37 @@ function getWordDetails() {
   alert("hint: its always an animal");
   word = words[randomWordIndex];
   let a = "_";
-  for (let i = 0; i < word.length; i++) {
+  for (let i = 0; i < word.length - 1; i++) {
     a += " _";
   }
-  
 
-  return a
+  letterArrays = word.split("");
+  console.log(letterArrays);
+
+  return a;
 }
 
-keybordKeys.addEventListener("click", () => {
-  console.log(keybordKeys.textContent);
+keybordKeys.forEach((key) => {
+  key.addEventListener("click", () => {
+    enterTheLetter(key.textContent);
+    console.log(key.textContent);
+  });
 });
 
-
 function enterTheLetter(letter) {
-  
-  for (let i = 0; i < word.length; i++) {
-    if (letter === word[i]) {
-      a[i]=letter;
-      console.log(word.indexOf(letter));
-    } else {
-      triesLeft--;
+  if (word.includes(letter)) {
+    console.log("yes");
+
+    aArray = a.split(" ");
+    for (let i = 0; i < aArray.length; i++) {
+      if (letterArrays[i] === letter) {
+        aArray[i] = letter;
+
+        a = aArray.join(" ");
+      }
     }
+    answer.textContent = a;
+  } else {
+    triesLeft--;
   }
 }
