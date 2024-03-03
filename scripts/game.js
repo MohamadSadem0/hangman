@@ -3,26 +3,25 @@ let answer = document.getElementById("answer-section");
 
 let word = "";
 const words = ["ELEPHANT", "HORSE", "FISH", "ZEBRA", "MONKEY"];
-let letterArrays; //= words.map((word) => word.split(""));
-let guessedLetters = [];
-let letterToGuess;
-let triesLeft = 5;
-let a = (answer.textContent = getWordDetails());
-window.onload = a;
+let letterArrays;
+let nbOfLetterGuessed = 0;
+let triesLeft = 6;
+let dashes_generated = (answer.textContent = getWordDetails());
+window.onload = dashes_generated;
+let step = 0;
 
 function getWordDetails() {
   let randomWordIndex = Math.floor(Math.random() * words.length);
   alert("hint: its always an animal");
   word = words[randomWordIndex];
-  let a = "_";
+  let dashes_generated = "_";
   for (let i = 0; i < word.length - 1; i++) {
-    a += " _";
+    dashes_generated += " _";
   }
 
   letterArrays = word.split("");
-  console.log(letterArrays);
 
-  return a;
+  return dashes_generated;
 }
 
 keybordKeys.forEach((key) => {
@@ -33,19 +32,56 @@ keybordKeys.forEach((key) => {
 });
 
 function enterTheLetter(letter) {
-  if (word.includes(letter)) {
+  if (word.includes(letter) && !dashes_generated.includes(letter)) {
     console.log("yes");
 
-    aArray = a.split(" ");
-    for (let i = 0; i < aArray.length; i++) {
+    dashesSplited = dashes_generated.split(" ");
+    for (let i = 0; i < dashesSplited.length; i++) {
       if (letterArrays[i] === letter) {
-        aArray[i] = letter;
+        dashesSplited[i] = letter;
+        nbOfLetterGuessed++;
 
-        a = aArray.join(" ");
+        dashes_generated = dashesSplited.join(" ");
       }
     }
-    answer.textContent = a;
+    answer.textContent = dashes_generated;
+    if (nbOfLetterGuessed === word.length) {
+      alert("u won");
+    }
+  } else if (dashes_generated.includes(letter)) {
   } else {
-    triesLeft--;
+    if (triesLeft > 0) {
+      triesLeft--;
+      manDraw();
+    } else {
+      alert("u lost");
+    }
   }
+}
+
+function manDraw() {
+  switch (step) {
+    case 0:
+      head();
+      break;
+    case 1:
+      body();
+      break;
+    case 2:
+      leftHand();
+      break;
+    case 3:
+      rightHand();
+      break;
+    case 4:
+      leftLeg();
+      break;
+    case 5:
+      rightLeg();
+      alert("u lost");
+      break;
+    default:
+      console.error("Invalid step value");
+  }
+  step++;
 }
