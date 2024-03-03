@@ -6,8 +6,9 @@ const words = ["elephant", "horse", "fish", "zebra", "monkey"];
 let guessedLetters = [];
 let letterToGuess;
 let triesLeft = 5;
+let a=answer.textContent = getWordDetails();
 function startGame() {}
-window.onload = getWordDetails();
+window.onload = a;
 
 function getWordDetails() {
   let randomWordIndex = Math.floor(Math.random() * words.length);
@@ -18,23 +19,20 @@ function getWordDetails() {
     a += " _";
   }
 
-  answer.textContent = a;
+  return a
 }
 
+keybordKeys.addEventListener("click", () => {
+  console.log(keybordKeys.textContent);
+});
 
-keybordKeys.addEventListener("click",()=>{
-    enterTheLetter()
-})
 
-function letterShow() {}
 function enterTheLetter(letter) {
-    let indexes=[]
+  
   for (let i = 0; i < word.length; i++) {
-    if (letter===word[i]) {
-        word.indexOf(letter);
-        console.log(word.indexOf(letter))
-
-
+    if (letter === word[i]) {
+      a[i]=letter;
+      console.log(word.indexOf(letter));
     } else {
       triesLeft--;
     }
