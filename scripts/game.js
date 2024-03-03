@@ -7,7 +7,6 @@ let guessedLetters = [];
 let letterToGuess;
 let triesLeft = 5;
 let a=answer.textContent = getWordDetails();
-function startGame() {}
 window.onload = a;
 
 function getWordDetails() {
@@ -18,6 +17,7 @@ function getWordDetails() {
   for (let i = 0; i < word.length; i++) {
     a += " _";
   }
+  
 
   return a
 }
